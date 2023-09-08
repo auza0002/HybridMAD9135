@@ -9,7 +9,9 @@ void main(List<String> arguments) {
 
   //
   Monkey jorgeMonkey = Monkey();
-  jorgeMonkey.eat("banana");
+  jorgeMonkey.eat((type: "coco", isMonkeyFod: true));
+  jorgeMonkey.eat((type: "mac and chese", isMonkeyFod: false));
+  jorgeMonkey.talk();
   //
 }
 
@@ -47,6 +49,14 @@ class GoldenFish extends Animal {
 class Monkey extends Animal {
   @override
   eat(food) {
-    print('monkey eats $food');
+    if (food.isMonkeyFod) {
+      print("Monkey enjoy eating ${food.type}");
+    } else {
+      print("Monkey DOES not eat that ${food.type}");
+    }
+  }
+
+  talk() {
+    print("Monkey say Hi");
   }
 }
