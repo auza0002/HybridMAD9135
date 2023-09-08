@@ -1,22 +1,23 @@
 import 'package:hybrid_one/hybrid_one.dart' as hybrid_one;
 
 void main(List<String> arguments) {
-  //
+  // Create a GoldenFish
   GoldenFish goldenFish = GoldenFish("Diego Auza");
-  print("the name of the owner is ${goldenFish.ownerName}");
+  print("The owner's name is ${goldenFish.ownerName}");
   goldenFish.eat("golden fish fast food");
   goldenFish.swim("hot");
 
-  //
+  // Create a Monkey
   Monkey jorgeMonkey = Monkey();
-  jorgeMonkey.eat((type: "coco", isMonkeyFod: true));
-  jorgeMonkey.eat((type: "mac and chese", isMonkeyFod: false));
+  jorgeMonkey.eat(Food(type: "coconut", isMonkeyFood: true));
+  jorgeMonkey.eat(Food(type: "mac and cheese", isMonkeyFood: false));
   jorgeMonkey.talk();
-  //
 }
 
 class Animal {
   Animal();
+
+  // Method for all animals to eat
   eat(var food) {
     print("The animal said thanks for the $food");
   }
@@ -27,36 +28,44 @@ class GoldenFish extends Animal {
   List<String> waterTemperature = ["cold", "normal"];
 
   GoldenFish(this.ownerName);
+
   @override
   eat(var food) {
-    print('the fish eats "$food"');
+    print('The fish eats "$food"');
   }
 
   swim(var currentTemperature) {
     if (waterTemperature.contains(currentTemperature)) {
-      print("the golden fish is swimming");
+      print("The golden fish is swimming");
     } else {
-      print("the temperture is not good for the healht of the fish");
+      print("The temperature is not good for the health of the fish");
       die();
     }
   }
 
   die() {
-    print("the fish is not alive any more");
+    print("The fish is not alive anymore");
   }
 }
 
 class Monkey extends Animal {
   @override
   eat(food) {
-    if (food.isMonkeyFod) {
-      print("Monkey is  eating ${food.type}");
+    if (food.isMonkeyFood) {
+      print("The monkey is eating ${food.type}");
     } else {
-      print("Monkey DOES not eat that ${food.type}");
+      print("The monkey does not eat that: ${food.type}");
     }
   }
 
   talk() {
-    print("Monkey say Hi");
+    print("The monkey says Hi");
   }
+}
+
+class Food {
+  final String type;
+  final bool isMonkeyFood;
+
+  Food({required this.type, required this.isMonkeyFood});
 }
