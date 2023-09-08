@@ -50,7 +50,7 @@ class Monkey extends Animal {
   @override
   eat(food) {
     if (food.isMonkeyFod) {
-      print("Monkey enjoy eating ${food.type}");
+      print("Monkey is  eating ${food.type}");
     } else {
       print("Monkey DOES not eat that ${food.type}");
     }
