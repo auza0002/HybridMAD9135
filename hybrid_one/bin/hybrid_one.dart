@@ -1,5 +1,3 @@
-import 'package:hybrid_one/hybrid_one.dart' as hybrid_one;
-
 void main(List<String> arguments) {
   // Create a GoldenFish
   GoldenFish goldenFish = GoldenFish("Diego Auza");
