@@ -1,69 +1,78 @@
-void main(List<String> arguments) {
-  // Create a GoldenFish
-  GoldenFish goldenFish = GoldenFish("Diego Auza");
-  print("The owner's name is ${goldenFish.ownerName}");
-  goldenFish.eat("golden fish fast food");
-  goldenFish.swim("hot");
+import 'dart:math';
 
-  // Create a Monkey
-  Monkey jorgeMonkey = Monkey();
-  jorgeMonkey.eat(Food(type: "coconut", isMonkeyFood: true));
-  jorgeMonkey.eat(Food(type: "mac and cheese", isMonkeyFood: false));
-  jorgeMonkey.talk();
+void main(List<String> arguments) {
+  print("");
+  Zoo sanFranciscoZoo = Zoo();
+  sanFranciscoZoo.feed("beef", 153);
+  print("");
+  LionKing matisLion = LionKing();
+  matisLion.photo();
+  matisLion.feed("hotdog", 89);
+  matisLion.feed("beef", 35);
+  print("");
+  Monkey jorge = Monkey();
+  jorge.talk();
+  jorge.feed("coconut", 10);
 }
 
-class Animal {
-  Animal();
+class Zoo {
+  Zoo();
 
   // Method for all animals to eat
-  eat(var food) {
-    print("The animal said thanks for the $food");
+  feed(String food, [int money = 0]) {
+    num quantity = money * 0.3;
+    if (money == 0) {
+      print("You can not buy $food witout money");
+    } else {
+      print("You paid $money and they gave you $quantity km of $food");
+    }
   }
 }
 
-class GoldenFish extends Animal {
-  late String ownerName;
-  List<String> waterTemperature = ["cold", "normal"];
+class LionKing extends Zoo {
+  // late String ownerName;
+  List<String> lionFood = ["beef", "chicken", "pork"];
 
-  GoldenFish(this.ownerName);
+  // LionKing(this.ownerName);
+
+  photo() {
+    var photos = Random().nextInt(15);
+    print("You took $photos picture of the lion");
+  }
 
   @override
-  eat(var food) {
-    print('The fish eats "$food"');
-  }
-
-  swim(var currentTemperature) {
-    if (waterTemperature.contains(currentTemperature)) {
-      print("The golden fish is swimming");
+  feed(String food, [int quantity = 0]) {
+    if (quantity == 0) {
+      print("you need food if you want to feed the lion");
+    } else if (lionFood.contains(food)) {
+      print("you gave $quantity kg of $food to the lion");
     } else {
-      print("The temperature is not good for the health of the fish");
-      die();
+      print("The lion does not eat that. It only eats Beef, Chicken or Pork");
     }
-  }
-
-  die() {
-    print("The fish is not alive anymore");
   }
 }
 
-class Monkey extends Animal {
-  @override
-  eat(food) {
-    if (food.isMonkeyFood) {
-      print("The monkey is eating ${food.type}");
-    } else {
-      print("The monkey does not eat that: ${food.type}");
-    }
-  }
-
+class Monkey extends Zoo {
+  List<String> monkeyFood = ["banana", "coconut", "nuts", "mango"];
   talk() {
     print("The monkey says Hi");
+    double totalJumps = Random().nextDouble() * 1;
+    jumps(totalJumps);
   }
-}
 
-class Food {
-  final String type;
-  final bool isMonkeyFood;
+  jumps(totalJumps) {
+    print("The monkey jumps ${totalJumps.toStringAsFixed(2)} cm");
+  }
 
-  Food({required this.type, required this.isMonkeyFood});
+  @override
+  feed(String food, [int quantity = 0]) {
+    if (quantity == 0) {
+      print("you need food if you want to feed the monkey");
+    } else if (monkeyFood.contains(food)) {
+      print("you gave $quantity kg of $food to the monkey");
+    } else {
+      print(
+          "The monkey does not eat that. It only eats banana, coconut or mango");
+    }
+  }
 }
